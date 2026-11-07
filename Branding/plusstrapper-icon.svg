@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-labelledby="t d">
+<title id="t">PlusStrapper logo</title>
+<desc id="d">A teal-to-green rounded square with a bold white plus sign</desc>
+<defs><linearGradient id="ig" x1="4" y1="4" x2="124" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0F8A8C"/><stop offset=".55" stop-color="#0EA371"/><stop offset="1" stop-color="#22B550"/></linearGradient></defs>
+<g fill="url(#ig)"><rect x="4" y="4" width="120" height="120" rx="34"/></g><g fill="#fff"><rect x="49" y="24" width="30" height="80" rx="10"/><rect x="24" y="49" width="80" height="30" rx="10"/></g>
+</svg>
