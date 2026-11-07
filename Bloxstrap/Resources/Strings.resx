@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -838,9 +838,9 @@ Selecting 'No' will ignore this warning and continue installation.</value>
   <data name="Installer.Welcome.MainText" xml:space="preserve">
     <value>Thank you for downloading PlusStrapper. 
 
-The only official websites to download PlusStrapper from are {0} and {1}, so please verify that you got it from an official source.
+The only official place to download PlusStrapper is {0}. If you got it from anywhere else, delete it and download it again from there.
 
-This installation process will be quick and simple, and you will be able to configure any of PlusStrapper's settings after installation.</value>
+Installing takes a few seconds. After that you can change fonts, cursors, colours and more from the PlusStrapper settings.</value>
     <comment>{0} and {1} are URLs</comment>
   </data>
   <data name="Installer.Welcome.NextToContinue" xml:space="preserve">
