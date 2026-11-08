@@ -26,6 +26,7 @@ namespace Bloxstrap.Models.Persistable
         // PlusStrapper: how the strapper's own windows look
         public string AccentColor { get; set; } = "PlusStrapper Teal";
         public string AppFont { get; set; } = "Nimbus Sans";
+        public string PerformanceLevel { get; set; } = "Off";
 
         // integration configuration
         public bool EnableActivityTracking { get; set; } = true;

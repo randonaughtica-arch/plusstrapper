@@ -167,6 +167,21 @@ namespace Bloxstrap.UI.ViewModels.Settings
                 OnPropertyChanged(property);
             }, System.Windows.Threading.DispatcherPriority.ContextIdle);
 
+        public IEnumerable<string> PerformanceLevels => FastFlagManager.PerformanceLevels;
+
+        public string PerformanceLevel
+        {
+            get => App.Settings.Prop.PerformanceLevel;
+            set
+            {
+                App.FastFlags.ApplyPerformanceLevel(App.Settings.Prop.PerformanceLevel, value);
+                App.Settings.Prop.PerformanceLevel = value;
+                OnPropertyChanged(nameof(PerformanceDescription));
+            }
+        }
+
+        public string PerformanceDescription => FastFlagManager.PerformanceLevelInfo.GetValueOrDefault(PerformanceLevel, "");
+
         public ICommand OpenModsFolderCommand => new RelayCommand(OpenModsFolder);
 
         public ICommand OpenCompatSettingsCommand => new RelayCommand(OpenCompatSettings);

@@ -39,6 +39,12 @@
             <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="220" ItemsSource="{Binding CursorChoices, Mode=OneTime}" SelectedItem="{Binding CursorChoice, Mode=TwoWay}" />
         </controls:OptionControl>
 
+        <TextBlock Text="Performance" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+
+        <controls:OptionControl Header="Performance level" Description="{Binding PerformanceDescription}">
+            <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="220" ItemsSource="{Binding PerformanceLevels, Mode=OneTime}" SelectedItem="{Binding PerformanceLevel, Mode=TwoWay}" />
+        </controls:OptionControl>
+
         <TextBlock Text="Sounds &amp; Scenes" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
         <controls:OptionControl Header="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Title}" Description="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Description}">

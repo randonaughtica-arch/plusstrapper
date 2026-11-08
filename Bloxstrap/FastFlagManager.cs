@@ -1,4 +1,4 @@
-﻿using Bloxstrap.Enums.FlagPresets;
+using Bloxstrap.Enums.FlagPresets;
 
 namespace Bloxstrap
 {
@@ -25,6 +25,70 @@ namespace Bloxstrap
             { "Rendering.TextureQuality.OverrideEnabled", "DFFlagTextureQualityOverrideEnabled" },
             { "Rendering.TextureQuality.Level", "DFIntTextureQualityOverride" },
         };
+
+        // PlusStrapper: performance levels. Only flags on Roblox's client allowlist (devforum, 29 Sep 2025);
+        // anything else in ClientAppSettings.json is ignored by the client. Each level includes the previous one.
+        public static readonly string[] PerformanceLevels = { "Off", "Light", "Balanced", "Max" };
+
+        public static IReadOnlyDictionary<string, string> PerformanceLevelInfo => new Dictionary<string, string>
+        {
+            { "Off", "Roblox's normal graphics. PlusStrapper doesn't change anything." },
+            { "Light", "Turns off anti-aliasing and stops grass from swaying. Looks almost the same." },
+            { "Balanced", "Also lowers texture quality, removes grass and shows simpler models sooner." },
+            { "Max", "Lowest textures, simplest models and Roblox's lowest graphics quality. Best for slow PCs. Looks noticeably worse." },
+        };
+
+        private static readonly Dictionary<string, string>[] PerformanceFlagsByLevel =
+        {
+            new(), // Off
+            new()  // Light
+            {
+                { "FIntDebugForceMSAASamples", "1" },
+                { "FIntGrassMovementReducedMotionFactor", "0" },
+            },
+            new()  // Balanced
+            {
+                { "DFFlagTextureQualityOverrideEnabled", "True" },
+                { "DFIntTextureQualityOverride", "1" },
+                { "FIntFRMMaxGrassDistance", "0" },
+                { "FIntFRMMinGrassDistance", "0" },
+                { "DFIntCSGLevelOfDetailSwitchingDistance", "125" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL12", "250" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL23", "375" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL34", "500" },
+            },
+            new()  // Max
+            {
+                { "DFIntTextureQualityOverride", "0" },
+                { "DFIntCSGLevelOfDetailSwitchingDistance", "0" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL12", "0" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL23", "0" },
+                { "DFIntCSGLevelOfDetailSwitchingDistanceL34", "0" },
+                { "DFIntDebugFRMQualityLevelOverride", "1" },
+            },
+        };
+
+        public static Dictionary<string, string> GetPerformanceFlags(string level)
+        {
+            var flags = new Dictionary<string, string>();
+            int index = Array.IndexOf(PerformanceLevels, level);
+
+            for (int i = 1; i <= index; i++)
+                foreach (var pair in PerformanceFlagsByLevel[i])
+                    flags[pair.Key] = pair.Value;
+
+            return flags;
+        }
+
+        /// <summary>Removes the flags of the old level (only ours) and writes the new level's flags. Saved with the other fast flags.</summary>
+        public void ApplyPerformanceLevel(string oldLevel, string newLevel)
+        {
+            foreach (string key in GetPerformanceFlags(oldLevel).Keys)
+                SetValue(key, null);
+
+            foreach (var pair in GetPerformanceFlags(newLevel))
+                SetValue(pair.Key, pair.Value);
+        }
 
         public static IReadOnlyDictionary<MSAAMode, string?> MSAAModes => new Dictionary<MSAAMode, string?>
         {

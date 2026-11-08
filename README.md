@@ -30,6 +30,7 @@ Go to **Settings > Apps > Installed apps**, find **PlusStrapper**, and click **U
 - **Emoji style**: Twemoji, Catmoji, Windows 11, Windows 10, Windows 8
 - **Mouse cursor**: default, 2006, 2013, or any PNG image of your own
 - **Old character sounds** and **old avatar editor background**
+- **Performance level**: Off, Light, Balanced or Max. This turns down anti-aliasing, textures, grass and model detail for more FPS. It only uses fast flags on [Roblox's allowlist](https://devforum.roblox.com/t/allowlist-for-local-client-configuration-via-fast-flags/3966569), so every setting is one Roblox still accepts. Roblox doesn't allow changing the FPS cap this way.
 
 **Strapper Settings** (changes PlusStrapper's own windows)
 - **Colour theme**: light, dark, or follow Windows
