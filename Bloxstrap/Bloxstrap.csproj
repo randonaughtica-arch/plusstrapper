@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -19,6 +19,7 @@
     
   <ItemGroup>
     <Resource Include="Bloxstrap.ico" />
+    <Resource Include="Resources\PlusStrapperLogo.png" />
     <Resource Include="Resources\Fonts\NotoSansThai-VariableFont_wdth,wght.ttf" />
     <Resource Include="Resources\Fonts\Rubik-VariableFont_wght.ttf" />
     <Resource Include="Resources\Fonts\Nimbus\NimbusSanL-Regu.ttf" />

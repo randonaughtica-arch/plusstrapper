@@ -9,6 +9,10 @@ namespace Bloxstrap.Extensions
     {
         public static Icon GetSized(this Icon icon, int width, int height) => new(icon, new Size(width, height));
 
+        // BitmapFrame.Create takes the first .ico frame, which is often 16px and looks blurry when scaled up
+        private static ImageSource LargestFrame(Stream stream) =>
+            BitmapDecoder.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames.OrderByDescending(x => x.PixelWidth).First();
+
         public static ImageSource GetImageSource(this Icon icon, bool handleException = true)
         {
             using MemoryStream stream = new();
@@ -19,7 +23,7 @@ namespace Bloxstrap.Extensions
             {
                 try
                 {
-                    return BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                    return LargestFrame(stream);
                 }
                 catch (Exception ex)
                 {
@@ -30,7 +34,7 @@ namespace Bloxstrap.Extensions
             }
             else
             {
-                return BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                return LargestFrame(stream);
             }
         }
     }
